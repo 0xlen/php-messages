@@ -11,9 +11,9 @@ class Home extends CI_Controller
         $this->load->Model('Messages_model', 'messages');
     }
     
-    public function index()
+    public function index($id = 0)
     {
-        $data['posts'] = $this->messages->get();
+        $data['posts'] = $this->messages->get($id);
         $this->load->view('home', $data);
     }
 }

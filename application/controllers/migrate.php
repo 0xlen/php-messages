@@ -28,6 +28,22 @@ class Migrate extends CI_Controller {
         printf('current migrate version: %d', $this->_version());
     }
 
+    public function test($method = 'add')
+    {
+        if ($method == 'add') {
+            for ($i=0; $i<10; $i++) {
+                $data = array(
+                        'user_id' => $i,
+                        'msg'     => file_get_contents( 'http://loripsum.net/api' ),
+                        'date'    => date('Y-m-d H:i:s', time()),
+                    );
+                $this->db->insert('messages', $data);
+            }
+        } else {
+            $this->db->empty_table('messages');
+        }
+    }
+
     protected function _version()
     {
         $row = $this->db->get('migrations')->row();
