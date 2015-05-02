@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteBase /messages
+RewriteCond $1 !^(index\.php|images|robots\.txt|$)
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+
+# Deny all hidden file and directory access
+RedirectMatch 403 /\..*$
